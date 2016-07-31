@@ -80,8 +80,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'email', 'name', 'ente',
-                  'password1', 'password2', 'is_admin',)
-        read_only_fields = ('created_at', 'updated_at',)
+                  'password1', 'password2', 'is_admin')
+        read_only_fields = ('created_at', 'updated_at', 'is_admin',)
 
     def validate(self, data):
         is_admin = data.get('is_admin', False)

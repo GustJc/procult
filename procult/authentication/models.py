@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django_extensions.db.fields import AutoSlugField
 from .managers import UserManager, EntesManager
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=80, blank=False)
     slug = AutoSlugField(populate_from='name', overwrite=True)
@@ -26,16 +26,6 @@ class User(AbstractBaseUser):
 
     @property
     def is_staff(self):
-        return self.is_admin
-
-    @property
-    def is_superuser(self):
-        return self.is_admin
-
-    def has_perm(self, perm, obj=None):
-        return self.is_admin
-
-    def has_module_perms(self, app_label):
         return self.is_admin
 
     def __str__(self):

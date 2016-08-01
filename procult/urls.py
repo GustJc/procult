@@ -18,7 +18,8 @@ from procult.authentication.views import (
     ProposalAnalisysDetailView,
     ExportProposalsView,
     CompressProposalFilesView,
-    ProposalOwnListView
+    ProposalOwnListView,
+    ProposalDateViewSet
 )
 
 admin.autodiscover()
@@ -26,6 +27,7 @@ admin.autodiscover()
 router = DefaultRouter()
 
 router.register(r'api/v1/usuarios', UserViewSet)
+router.register(r'api/v1/canCreateProposal', ProposalDateViewSet)
 urlpatterns = router.urls
 
 urlpatterns += [

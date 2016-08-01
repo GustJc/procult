@@ -125,3 +125,11 @@ class ProposalLastAnalyzedSerializer(serializers.ModelSerializer):
         model = Proposal
         queryset = Proposal.objects.last_analyzed()
         fields = ('title','status_display',)
+
+
+class ProposalDateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProposalDate
+        fields = ('is_available',)
+        read_only_fields = ('is_available',)

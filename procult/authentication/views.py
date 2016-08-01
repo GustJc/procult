@@ -13,12 +13,19 @@ from procult.authentication.models import User
 from procult.authentication.serializers import (
     UserSerializer, LoginSerializer, ChangePasswordSerializer
 )
-from procult.core.models import Proposal, AttachmentProposal
+from procult.core.models import Proposal, AttachmentProposal, ProposalDate
 from procult.core.resources import ProposalResource
 from procult.core.serializers import (
     ProposalSerializer, ProposalUploadSerializer,
-    ProposalLastSendedSerializer, ProposalLastAnalyzedSerializer
+    ProposalLastSendedSerializer, ProposalLastAnalyzedSerializer,
+    ProposalDateSerializer
 )
+
+
+class ProposalDateViewSet(viewsets.ModelViewSet):
+    lookup_field = 'id'
+    queryset = ProposalDate.objects.all()
+    serializer_class = ProposalDateSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
